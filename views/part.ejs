@@ -1,0 +1,15 @@
+<% if(note){%>
+  <div class="row row-cols-3 w-100 d"></div><div class="card"><div class="dn"> 
+   
+        <div class="card-header">  <h1><%= note.title %></h1></div>
+        <div class="card-body">
+          <h5 class="card-title"><%= note.note%></h5>
+          <p class="card-text">  <p><%= note.d %></p></p>
+        </div>
+     </div>
+        <button  type="button" class="btn btn-outline-info">Edit</button>
+        <button  type="button" class="btn btn-outline-danger t">Delete</button>
+      
+          <%}%>
+ 
+          

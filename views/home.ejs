@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .card {
+    width: 500px;
+    margin: 20px;
+    height: 400px;
+    color: rgb(7, 4, 0);
+    box-shadow: 25px 15px 19px -12px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border: 3px solid black;
+
+
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+    border: 3px solid yellow;
+
+  }
+
+  h1 {
+    color: rgb(8, 8, 8);
+  }
+
+  .but {
+    margin-top: 20px;
+    position: relative;
+    width: 200px;
+    height: 60px;
+    border-radius: 3px;
+
+    margin-left: 50px;
+    border: none;
+    color: black;
+    border: 3px solid black;
+  }
+
+  .but:hover {
+    background-color: rgb(226, 86, 31);
+  }
+
+
+
+  .notebox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    width: 100vw;
+  }
+
+  body {
+    color: black;
+
+    font-family: 'Times New Roman', serif;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-evenly;
+    width: 100vw;
+
+
+  }
+
+  .dn {
+
+    margin-left: -9px;
+    width: 490px;
+    height: 400px;
+    overflow: scroll;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .right {
+    margin-left: auto;
+  }
+
+  .left {
+
+    margin-top: 20px;
+
+    width: 200px;
+    height: 60px;
+    border-radius: 3px;
+
+
+    margin-right: 20px;
+    border: none;
+    color: black;
+    border: 3px solid black;
+  }
+
+  .nav {
+    display: flex;
+    background-color: teal;
+    ;
+
+  }
+
+  .color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-top: 29px;
+    border: none;
+    padding: 20px;
+    margin-left: 10px;
+    display: none;
+
+  }
+
+  #red {
+    background-color: red;
+  }
+
+  #yellow {
+    background-color: yellow;
+  }
+
+  #green {
+    background-color: green;
+  }
+
+  #black {
+    background-color: rgb(189, 146, 146);
+  }
+</style>
+
+<body>
+
+
+
+
+  <div class="nav"><button type="button" class="but" class="btn  " data-bs-toggle="modal" data-bs-target="#exampleModal"
+      data-bs-whatever="@getbootstrap">
+      ADD NOTE
+    </button>
+    <div id="colordiv"><button id="red" value="pink" onclick="change(this)" class="color"></button><button id="yellow" onclick="change(this)" value="yellow"
+        class="color"></button><button onclick="change(this)" id="green" class="color"></button>
+      <button id="black" onclick="change(this)" class="color"></button>
+    </div>
+
+    <div class="right"><button class="left"><a href="http://localhost:5004/register">REGISTER</a></button>
+      <button class="left"><a href="http://localhost:5004/login">LOG OUT</a></button>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">ADD NOTE</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Note:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="form" class="btn btn-primary spinn">
+            <div class="spinner-border d-none text-light load" role="status">
+              <span class="sr-only"></span>
+            </div>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notebox"></div>
+  <div class="row row-cols-3 w-100 d">
+
+    <% if(result){%>
+
+      <% for(var i=0; i<result.length; i++) { %>
+
+        <div id="card-<%= result[i].id %>" class="card" onclick="getId(this)">
+          <div class="dn">
+            <div class="card-header btn-primary">
+              <h1>
+                <%= result[i].title %>
+              </h1>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= result[i].note%>
+              </h5>
+              <p class="card-text">
+              <p></p>
+              </p>
+            </div>
+
+          </div>
+          <p>
+            <%= result[i].date%>
+          </p>
+          <button type="button" class="btn btn-outline-info">Edit</button>
+          <button id="<%= result[i].id %>" type="button" class="btn btn-outline-danger t">Delete</button>
+
+
+
+        </div>
+
+        <% } %>
+
+          <%}%>
+
+  </div>
+  <script>
+    $(document).ready(function () {
+      $(".t").click(function (e) {
+
+        $.ajax({
+          url: "http://localhost:5004/delete",
+          data: { id: e.target.id },
+          method: "GET",
+          contentType: 'application/json',
+          success: function (d) {
+            $(`#card-${e.target.id}`).hide()
+
+
+
+          },
+          error: function (e) {
+            alert(e)
+          }
+        })
+      })
+
+    })
+
+  </script>
+  <div id="cook"></div>
+  <script>
+    const a = document.cookie.slice(7);
+
+
+
+  </script>
+  <script>
+
+
+
+
+
+    $(document).ready(function () {
+      $(".spinn").click(function () {
+        $(".load").show();
+      })
+      const d = new Date();
+      const year = d.getFullYear();
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      const hours = d.getHours();
+      const minutes = d.getMinutes(); const date = year + "-" + month + "-" + day;
+      console.log(d)
+      $("#form").click(function () {
+
+        console.log(d)
+        console.log("this is cookie", document.cookie)
+        const titles = document.getElementById("recipient-name").value;
+        const notes = document.getElementById("message-text").value;
+        const a = document.cookie.slice(7);
+        console.log(notes)
+        $.ajax({
+          url: "http://localhost:5004/notes",
+          method: 'GET',
+          contentType: 'application/json',
+          data: { title: titles, note: notes, d: date, userid: parseInt(a) },
+          success: function (response) {
+            window.location = "/home"
+
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            $(".load").hide();
+            console.error('Error posting data:', textStatus, errorThrown);
+          }
+        });
+      })
+    })
+
+
+  </script>
+  <script>
+    var id;
+    
+    function change(event) {
+      console.log("upper",event)
+      $(`#${id}`).css("background-color", $(event).css("background-color"));
+    }
+    function getId(event) {
+      console.log("evernt",event)
+      $(".color").css("display", "inline-block")
+      id = $(event)[0].id
+      $(event).css("background-color", "transparent")
+    }
+
+
+  </script>
+
+
+</body>
+
+</html>

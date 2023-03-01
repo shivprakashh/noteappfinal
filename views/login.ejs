@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+      .con{
+        padding:20px;
+        width:100vw;
+        height:100vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color:whitesmoke;
+        border-radius: 10px;
+        box-shadow: -11px 21px 64px 26px rgba(0,0,0,0.1);
+    }
+    form{
+        box-shadow: -11px 21px 64px 26px rgba(0,0,0,0.1);
+        padding:80px;
+        border-radius: 10px;
+        background-color: white;
+    }
+    input{
+        margin:20px;
+  border-radius: 5px;
+        padding:20px 50px;
+        border:1px solid black;
+
+    }
+    body{
+        margin:0px;
+       
+        height:100vh;
+        width:100vw;
+    }
+    h1{
+        color:rgb(3, 3, 3);
+        display:inline-block;
+    }
+    a{
+        margin-left:1200px;
+        padding:20px;
+        text-decoration: none;
+        color:black;
+
+    }
+    h3{
+        color:black;
+    }
+</style>
+<body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <h1>login form</h1>
+    
+  <div class="con">  <form  action="/login" method="post" onsubmit="return vali()"><h3>Login here</h3>
+        <input id="user" type="text" name="user" >
+        <span id="userspan"></span>
+        <br>
+        <input id ="pass" type="password" name="pass">
+        <span id="passspan" ></span><br>
+       
+      
+    <input type="submit">
+    </form></div>
+    
+    <script>
+        function vali(){
+            console.log("hi")
+            var userval= document.getElementById("user").value;
+            console.log(userval);
+            var passval= document.getElementById("pass").value;
+            var repassval= document.getElementById("repass").value;
+            var userpattern = /^[A-Za-z_]{3,}[0-9]{1,9}$/;
+            var passpattern = /^[A-Za-z_]{3,}[0-9]{0,9}$/;
+        
+        if(userpattern.test(userval)){
+            document.getElementById("userspan").innerHTML="correct";
+            document.getElementById("userspan").style.color="green";
+            console.log("true")
+
+        }
+        else{
+            document.getElementById("userspan").innerHTML="username must be end with number";
+            document.getElementById("userspan").style.color="red";
+            console.log("false")
+return false;
+        }
+        if(passpattern.test(passval)){
+            document.getElementById("passspan").innerHTML="correct";
+            document.getElementById("passspan").style.color="green";
+
+        }
+        else{
+            document.getElementById("passspan").innerHTML="password must be end with number";
+            document.getElementById("passspan").style.color="red";
+return false;
+        }
+      }
+    </script>
+</body>
+</html>

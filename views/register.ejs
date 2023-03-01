@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .con{
+        width:100vw;
+        height:100vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e0e6fd;
+        box-shadow: -11px 21px 64px 26px rgba(0,0,0,0.1);
+    }
+    form{
+        background-color:white;
+
+        padding:20px;
+        border-radius: 10px;
+    }
+    input{
+        margin:20px;
+        border:none;
+        border-bottom: 2px solid black;
+        border-radius: 1px;
+        padding:20px;
+
+    }
+    input:hover{
+        border:2px solid black;
+    }
+    body{
+        margin:0px;
+        background-color:white;
+        height:100vh;
+        width:100vw;
+     
+    }
+    h1{
+        color:rgb(8, 8, 8);
+        display:inline-block;
+        margin-left: 10px;
+    }
+    a{
+        margin-left:1200px;
+        padding:20px;
+        text-decoration: none;
+        color:rgb(3, 3, 3);
+
+    }
+    h3{
+        color:white;
+    }
+    #bu{
+        background-color: blue;
+    color:white;
+    box-shadow: -11px 21px 64px 26px rgba(0,0,0,0.1);
+    }
+</style>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <h1>Note app</h1><a href="/login">LOGIN</a>
+   <div class="con"> <form autocomplete="off" action="/register" method="post" onsubmit="return vali()"><h3>Resgister here</h3>
+        <input id="user" placeholder="username" type="text" name="user" >
+        <span id="userspan"></span>
+        <br>
+        <input id ="pass" placeholder="password" value="" type="password" name="pass">
+        <span id="passspan" ></span><br>
+        <input id ="repass" placeholder="repeat password" type="password" name="repass">
+        <span id="repassspan"></span>
+    <input id ="bu" type="submit">
+    </form></div>
+    <script>
+        function vali(){
+            console.log("hi")
+            var userval= document.getElementById("user").value;
+            console.log(userval);
+            var passval= document.getElementById("pass").value;
+            var repassval= document.getElementById("repass").value;
+            var userpattern = /^[A-Za-z_]{3,}[0-9]{1,9}$/;
+            var passpattern = /^[A-Za-z_]{3,}[0-9]{0,9}$/;
+        
+        if(userpattern.test(userval)){
+            document.getElementById("userspan").innerHTML="correct";
+            document.getElementById("userspan").style.color="green";
+            console.log("true")
+
+        }
+        else{
+            document.getElementById("userspan").innerHTML="username must be end with number";
+            document.getElementById("userspan").style.color="red";
+            console.log("false")
+return false;
+        }
+        if(passpattern.test(passval)){
+            document.getElementById("passspan").innerHTML="correct";
+            document.getElementById("passspan").style.color="green";
+
+        }
+        else{
+            document.getElementById("passspan").innerHTML="password must be end with number";
+            document.getElementById("passspan").style.color="red";
+return false;
+        }
+        if(repassval === passval){
+            document.getElementById("repassspan").innerHTML="correct";
+            document.getElementById("repassspan").style.color="green";
+
+        }
+        else{
+            document.getElementById("repassspan").innerHTML="password does not match";
+            document.getElementById("repassspan").style.color="red";
+return false;
+        }}
+    </script>
+</body>
+</html>
